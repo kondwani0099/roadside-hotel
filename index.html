@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadside Hotels Kapiri - Comfort Along Your Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#1e40af',
+                        'brand-light-blue': '#3b82f6',
+                        'brand-dark-blue': '#1e3a8a',
+                    }
+                }
+            }
+        }
+    </script>
+       
+    <!-- Custom Navigation Styles -->
+    <style>
+        /* Desktop navigation underline animation */
+        .nav-link:hover .nav-underline {
+            width: 100%;
+        }
+        
+        .nav-link.active .nav-underline {
+            width: 100%;
+        }
+        
+        /* Hamburger menu animation */
+        .hamburger {
+            width: 24px;
+            height: 18px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        
+        .hamburger-line {
+            height: 2px;
+            width: 100%;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .hamburger.open .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translateY(8px);
+        }
+        
+        .hamburger.open .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        
+        .hamburger.open .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translateY(-8px);
+        }
+        
+        /* Mobile menu animations */
+        .mobile-menu-open {
+            transform: translateX(0) !important;
+        }
+        
+        .mobile-menu-overlay-open {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        /* Smooth scroll offset for fixed navbar */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 4rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-brand-blue shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <!-- Rounded Logo -->
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3 shadow-md">
+                            <img src="images/icons/logo (1).jpg" alt="Roadside Hotels Logo" class="w-8 h-8 rounded-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <i class="fas fa-bed text-brand-blue text-lg hidden"></i>
+                        </div>
+                        <h1 class="text-white text-xl font-bold">
+                            Roadside Hotels
+                        </h1>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-all duration-300 relative">
+                            Home
+                            <span class="nav-underline absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300"></span>
+                        </a>
+                        <a href="#rooms" class="nav-link text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-all duration-300 relative">
+                            Rooms
+                            <span class="nav-underline absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300"></span>
+                        </a>
+                        <a href="#features" class="nav-link text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-all duration-300 relative">
+                            Features
+                            <span class="nav-underline absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300"></span>
+                        </a>
+                        <a href="#bar-pool" class="nav-link text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-all duration-300 relative">
+                            Bar & Pool
+                            <span class="nav-underline absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300"></span>
+                        </a>
+                        <a href="#contact" class="nav-link text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-all duration-300 relative">
+                            Contact
+                            <span class="nav-underline absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300"></span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-blue-200 p-2 rounded-md transition-colors duration-300">
+                        <span class="sr-only">Open main menu</span>
+                        <div class="hamburger">
+                            <span class="hamburger-line bg-white"></span>
+                            <span class="hamburger-line bg-white"></span>
+                            <span class="hamburger-line bg-white"></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 md:hidden">
+            <div class="flex flex-col h-full">
+                <!-- Mobile menu header -->
+                <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center mr-3">
+                            <img src="images/icons/logo (1).jpg" alt="Roadside Hotels Logo" class="w-8 h-8 rounded-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <i class="fas fa-bed text-white text-lg hidden"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900">Roadside Hotels</h2>
+                    </div>
+                    <button id="mobile-close-button" class="p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors duration-200">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile navigation links -->
+                <nav class="flex-1 px-6 py-6">
+                    <div class="space-y-2">
+                        <a href="#home" class="mobile-nav-link flex items-center px-4 py-3 text-gray-700 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-all duration-200 group">
+                            <i class="fas fa-home w-5 h-5 mr-3 text-gray-400 group-hover:text-brand-blue transition-colors"></i>
+                            <span class="font-medium">Home</span>
+                        </a>
+                        <a href="#rooms" class="mobile-nav-link flex items-center px-4 py-3 text-gray-700 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-all duration-200 group">
+                            <i class="fas fa-bed w-5 h-5 mr-3 text-gray-400 group-hover:text-brand-blue transition-colors"></i>
+                            <span class="font-medium">Rooms</span>
+                        </a>
+                        <a href="#features" class="mobile-nav-link flex items-center px-4 py-3 text-gray-700 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-all duration-200 group">
+                            <i class="fas fa-star w-5 h-5 mr-3 text-gray-400 group-hover:text-brand-blue transition-colors"></i>
+                            <span class="font-medium">Features</span>
+                        </a>
+                        <a href="#bar-pool" class="mobile-nav-link flex items-center px-4 py-3 text-gray-700 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-all duration-200 group">
+                            <i class="fas fa-swimming-pool w-5 h-5 mr-3 text-gray-400 group-hover:text-brand-blue transition-colors"></i>
+                            <span class="font-medium">Bar & Pool</span>
+                        </a>
+                        <a href="#contact" class="mobile-nav-link flex items-center px-4 py-3 text-gray-700 hover:text-brand-blue hover:bg-blue-50 rounded-lg transition-all duration-200 group">
+                            <i class="fas fa-envelope w-5 h-5 mr-3 text-gray-400 group-hover:text-brand-blue transition-colors"></i>
+                            <span class="font-medium">Contact</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Contact info in mobile menu -->
+                    <div class="mt-8 pt-8 border-t border-gray-200">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Contact Info</h3>
+                        <div class="space-y-3">
+                            <a href="tel:+260961126722" class="flex items-center text-sm text-gray-600 hover:text-brand-blue transition-colors">
+                                <i class="fas fa-phone w-4 h-4 mr-3"></i>
+                                +260 961 126 722
+                            </a>
+                            <a href="mailto:info@roadsidehotels.net" class="flex items-center text-sm text-gray-600 hover:text-brand-blue transition-colors">
+                                <i class="fas fa-envelope w-4 h-4 mr-3"></i>
+                                info@roadsidehotels.net
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Mobile menu footer -->
+                <div class="p-6 border-t border-gray-200">
+                    <a href="https://wa.me/260961126722" class="flex items-center justify-center w-full px-4 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-200">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-16 relative min-h-screen flex items-center overflow-hidden">
+        <!-- Background Video -->
+        <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="videos/heroes-night.mp4" type="video/mp4">
+            <source src="videos/heroes.mp4" type="video/mp4">
+            
+            <!-- Fallback for browsers that don't support video -->
+        </video>
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-blue/10 to-brand-light-blue/70 z-10"></div>
+        
+        <!-- Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
+                    Welcome to Roadside Hotels
+                </h2>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white">
+                    Your comfortable stop along the journey in Kapiri, Zambia. Strategically located on the Kapiri Ndola Road for easy access.
+                </p>
+                <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+                    <a href="#rooms" class="bg-white text-brand-blue px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-block">
+                        View Rooms & Prices
+                    </a>
+                    <a href="#contact" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-brand-blue transition-colors inline-block">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms & Pricing Section -->
+    <section id="rooms" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Rooms & Pricing</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Choose from our comfortable accommodations designed for travelers</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Standard Room -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/rooms (2).jpg" alt="Standard Room" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden h-full bg-gradient-to-r from-blue-400 to-blue-600 items-center justify-center">
+                            <i class="fas fa-bed text-white text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Standard Room</h3>
+                        <div class="text-3xl font-bold text-brand-blue mb-4">ZMW 1000<span class="text-lg text-gray-600">/night</span></div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Single or Double Bed
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Private Bathroom
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Free Wi-Fi
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Air Conditioning
+                            </li>
+                        </ul>
+                        <button class="w-full bg-brand-blue text-white py-2 px-4 rounded-lg hover:bg-brand-dark-blue transition-colors">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Deluxe Room -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-brand-blue hover:shadow-xl transition-shadow relative">
+                    <div class="absolute top-4 right-4 bg-brand-blue text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                        Popular
+                    </div>
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/rooms (1).jpg" alt="Deluxe Room" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden h-full bg-gradient-to-r from-blue-500 to-blue-700 items-center justify-center">
+                            <i class="fas fa-bed text-white text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Deluxe Room</h3>
+                        <div class="text-3xl font-bold text-brand-blue mb-4">ZMW 1500<span class="text-lg text-gray-600">/night</span></div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Queen Size Bed
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Private Bathroom with Bathtub
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Free Wi-Fi & Cable TV
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Mini Refrigerator
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Complimentary Breakfast
+                            </li>
+                        </ul>
+                        <button class="w-full bg-brand-blue text-white py-2 px-4 rounded-lg hover:bg-brand-dark-blue transition-colors">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Family Suite -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/rooms (3).jpg" alt="Family Suite" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden h-full bg-gradient-to-r from-blue-600 to-blue-800 items-center justify-center">
+                            <i class="fas fa-home text-white text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Family Suite</h3>
+                        <div class="text-3xl font-bold text-brand-blue mb-4">ZMW 2500<span class="text-lg text-gray-600">/night</span></div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                2 Bedrooms
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Living Area
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Kitchenette
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                2 Bathrooms
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Sleeps up to 6 guests
+                            </li>
+                        </ul>
+                        <button class="w-full bg-brand-blue text-white py-2 px-4 rounded-lg hover:bg-brand-dark-blue transition-colors">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room Gallery Section -->
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Room Gallery</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Take a visual tour of our comfortable accommodations</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer" onclick="openModal('modal1')">
+                    <img src="images/rooms (1).jpg" alt="Hotel Room Interior" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Hotel+Room'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer" onclick="openModal('modal2')">
+                    <img src="images/rooms (3).jpg" alt="Bathroom" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/400x300/1e40af/ffffff?text=Bathroom'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer" onclick="openModal('modal3')">
+                    <img src="images/gallery (1).jpg" alt="Restaurant Area" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/400x300/1e3a8a/ffffff?text=Restaurant'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer" onclick="openModal('modal4')">
+                    <img src="images/gallery (2).jpg" alt="Hotel Exterior" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Hotel+Exterior'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer" onclick="openModal('modal5')">
+                    <img src="images/gallery (4).jpg" alt="Reception Area" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/400x300/1e40af/ffffff?text=Reception'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="relative group overflow-hidden rounded-lg shadow-lg cursor-pointer" onclick="openModal('modal6')">
+                    <img src="images/gallery (5).jpg" alt="Suite Living Area" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/400x300/1e3a8a/ffffff?text=Suite+Living'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Gallery Images -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center p-4">
+        <div class="relative max-w-4xl max-h-full">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modalImage" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg">
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Hotel Features & Amenities</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Everything you need for a comfortable stay</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="bg-brand-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-wifi text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Free Wi-Fi</h3>
+                    <p class="text-gray-600">High-speed internet access throughout the property</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="bg-brand-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-car text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Free Parking</h3>
+                    <p class="text-gray-600">Secure parking available for all guests</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="bg-brand-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-utensils text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Restaurant</h3>
+                    <p class="text-gray-600">On-site dining with local and international cuisine</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="bg-brand-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">24/7 Reception</h3>
+                    <p class="text-gray-600">Round-the-clock front desk service</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="bg-brand-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Security</h3>
+                    <p class="text-gray-600">24-hour security for your peace of mind</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="bg-brand-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-snowflake text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Air Conditioning</h3>
+                    <p class="text-gray-600">Climate-controlled rooms for comfort</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="bg-brand-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-broom text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Housekeeping</h3>
+                    <p class="text-gray-600">Daily cleaning and maintenance service</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="bg-brand-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-concierge-bell text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Room Service</h3>
+                    <p class="text-gray-600">In-room dining available upon request</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Why Choose Roadside Hotels?</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-brand-blue text-white w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Prime Location</h3>
+                                <p class="text-gray-600">Strategically located on Kapiri Ndola Road, perfect for travelers between Lusaka and the Copperbelt.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-brand-blue text-white w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Affordable Rates</h3>
+                                <p class="text-gray-600">Competitive pricing without compromising on quality and comfort.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-brand-blue text-white w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Friendly Staff</h3>
+                                <p class="text-gray-600">Our experienced team is dedicated to making your stay memorable and comfortable.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-brand-blue text-white w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Quality Service</h3>
+                                <p class="text-gray-600">We maintain high standards of cleanliness, comfort, and hospitality.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<div class="bg-gradient-to-r from-brand-blue to-brand-light-blue p-8 rounded-xl text-white">
+  <h3 class="text-2xl font-bold mb-4">Ready to Book?</h3>
+  <p class="text-blue-100 mb-6">
+    Contact us today to reserve your room or get more information about our services.
+  </p>
+  
+  <div class="space-y-3">
+    <div class="flex items-center">
+      <i class="fas fa-phone mr-3"></i>
+      <span>+260 961 126 722</span>
+    </div>
+    <div class="flex items-center">
+      <i class="fas fa-envelope mr-3"></i>
+      <span>info@roadsidehotels.net</span>
+    </div>
+    <div class="flex items-center">
+      <i class="fas fa-map-marker-alt mr-3"></i>
+      <span>Great East Road, Lusaka, Zambia</span>
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <a href="mailto:info@roadsidehotels.net" 
+       class="inline-block bg-white text-brand-blue font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-50 transition">
+      Book Now
+    </a>
+  </div>
+</div>
+    </section>
+
+    <!-- Bar & Pool Area Section -->
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Bar & Pool Area</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Relax and unwind at our poolside bar with refreshing drinks and stunning views</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <!-- Pool Area -->
+                <div class="relative">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer" onclick="openModal('poolModal')">
+                        <img src="images/pool-area (1).jpg" alt="Swimming Pool" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/600x400/3b82f6/ffffff?text=Swimming+Pool'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-brand-blue">Open</div>
+                            <div class="text-sm text-gray-600">6AM - 10PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Swimming Pool</h3>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Take a refreshing dip in our outdoor swimming pool, perfect for relaxation after a long day of travel or business meetings.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 text-brand-blue w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-swimming-pool text-sm"></i>
+                            </div>
+                            <span class="text-gray-700">Clean, chlorinated water maintained daily</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 text-brand-blue w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-sun text-sm"></i>
+                            </div>
+                            <span class="text-gray-700">Comfortable poolside loungers</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 text-brand-blue w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-child text-sm"></i>
+                            </div>
+                            <span class="text-gray-700">Shallow end safe for children</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 text-brand-blue w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-umbrella text-sm"></i>
+                            </div>
+                            <span class="text-gray-700">Shaded areas available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Poolside Bar</h3>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Enjoy refreshing cocktails, cold beers, and light snacks at our poolside bar while soaking up the Zambian sunshine.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-3">Beverages</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li>• Fresh fruit cocktails</li>
+                                <li>• Local and imported beers</li>
+                                <li>• Premium spirits</li>
+                                <li>• Non-alcoholic drinks</li>
+                                <li>• Fresh juices</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-3">Light Meals</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li>• Grilled chicken & fish</li>
+                                <li>• Fresh salads</li>
+                                <li>• Sandwiches & wraps</li>
+                                <li>• Local snacks</li>
+                                <li>• Seasonal fruits</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-blue text-white p-4 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-semibold">Bar Hours</div>
+                                <div class="text-blue-200">Daily: 11:00 AM - 11:00 PM</div>
+                            </div>
+                            <i class="fas fa-cocktail text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2 relative">
+                    <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer" onclick="openModal('barModal')">
+                        <img src="images/bar (2).jpg" alt="Poolside Bar" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/600x400/1e40af/ffffff?text=Poolside+Bar'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-brand-blue">Happy</div>
+                            <div class="text-sm text-gray-600">Hour 5-7PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pool & Bar Gallery -->
+            <div class="mt-20">
+                <h3 class="text-2xl font-bold text-gray-900 text-center mb-10">Pool & Bar Gallery</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="relative group overflow-hidden rounded-lg shadow-md cursor-pointer" onclick="openModal('poolGallery1')">
+                        <img src="images/pool-area (3).jpg" alt="Pool View 1" class="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/300x200/3b82f6/ffffff?text=Pool+1'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="relative group overflow-hidden rounded-lg shadow-md cursor-pointer" onclick="openModal('poolGallery2')">
+                        <img src="images/bar-area (1).jpg" alt="Pool View 2" class="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/300x200/1e40af/ffffff?text=Pool+2'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="relative group overflow-hidden rounded-lg shadow-md cursor-pointer" onclick="openModal('poolGallery3')">
+                        <img src="images/bar-area (3).jpg" alt="Bar View 1" class="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/300x200/1e3a8a/ffffff?text=Bar+1'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="relative group overflow-hidden rounded-lg shadow-md cursor-pointer" onclick="openModal('poolGallery4')">
+                        <img src="images/pool-area (2).jpg" alt="Bar View 2" class="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/300x200/0ea5e9/ffffff?text=Bar+2'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">We'd love to hear from you! Reach out to us for any inquiries or bookings.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Get in Touch</h3>
+                    <p class="text-lg text-gray-700 mb-6">
+                        For reservations or more information about our services, please contact us using the details below:
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-phone-alt text-brand-blue mr-3"></i>
+                            <span class="text-gray-700">+260 961 126 722</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-brand-blue mr-3"></i>
+                            <span class="text-gray-700">info@roadsidehotels.net</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-brand-blue mr-3"></i>
+                            <span class="text-gray-700">Kapiri Ndola Road, Kapiri, Zambia</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-brand-blue mr-3"></i>
+                            <span class="text-gray-700">24/7 Reception</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 space-y-3">
+                        <a href="mailto:info@roadsidehotels.net" class="inline-block bg-brand-blue text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-brand-dark-blue transition w-full text-center">
+                            Send Us an Email
+                        </a>
+                        <a href="tel:+260961126722" class="inline-block bg-green-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-green-600 transition w-full text-center">
+                            Call Us Now
+                        </a>
+                        <a href="https://maps.app.goo.gl/yw16gaTP5PXPNaQC6?g_st=ac" target="_blank" class="inline-block bg-red-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-red-600 transition w-full text-center">
+                            Get Directions
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Google Maps -->
+                <div class="lg:col-span-2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Find Us on the Map</h3>
+                    <div class="relative">
+                        <div class="bg-gray-200 rounded-lg overflow-hidden shadow-lg h-96">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3849.2456789!2d28.6622559!3d-13.9488642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDU2JzU1LjkiUyAyOMKwMzknNDQuMSJF!5e0!3m2!1sen!2szm!4v1695828123456!5m2!1sen!2szm"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                class="rounded-lg">
+                            </iframe>
+                        </div>
+                        <!-- Map overlay with link -->
+                        <div class="absolute top-4 right-4 z-10">
+                            <a href="https://maps.app.goo.gl/yw16gaTP5PXPNaQC6?g_st=ac" 
+                               target="_blank" 
+                               class="bg-white text-brand-blue px-4 py-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center text-sm font-semibold">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Open in Maps
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Location Details -->
+                    <div class="mt-6 bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-3">Location Highlights</h4>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
+                            <div class="flex items-center">
+                                <i class="fas fa-road text-brand-blue mr-2"></i>
+                                <span>Located on Kapiri Ndola Road</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-car text-brand-blue mr-2"></i>
+                                <span>Easy highway access</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-gas-pump text-brand-blue mr-2"></i>
+                                <span>Near fuel stations</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-utensils text-brand-blue mr-2"></i>
+                                <span>Close to restaurants</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-truck text-brand-blue mr-2"></i>
+                                <span>Perfect for truck drivers</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-city text-brand-blue mr-2"></i>
+                                <span>Between Lusaka & Ndola</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="mt-16 text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Follow Us</h3>
+                <p class="text-lg text-gray-700 mb-6">
+                    Stay updated on our latest news, offers, and events. Follow us on social media:
+                </p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors">
+                        <i class="fab fa-facebook-f fa-lg"></i>
+                    </a>
+                    <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition-colors">
+                        <i class="fab fa-twitter fa-lg"></i>
+                    </a>
+                    <a href="#" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition-colors">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="#" class="bg-blue-700 text-white p-3 rounded-full hover:bg-blue-800 transition-colors">
+                        <i class="fab fa-linkedin-in fa-lg"></i>
+                    </a>
+                    <a href="https://wa.me/260961126722" target="_blank" class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition-colors">
+                        <i class="fab fa-whatsapp fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-blue text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 flex items-center">
+                    <!-- Rounded Logo in Footer -->
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-3 shadow-md">
+                        <img src="images/icons/logo (1).jpg" alt="Roadside Hotels Logo" class="w-10 h-10 rounded-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i class="fas fa-bed text-brand-blue text-xl hidden"></i>
+                    </div>
+                    <h1 class="text-3xl font-bold">
+                        Roadside Hotels
+                    </h1>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#home" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="#rooms" class="hover:text-blue-200 transition-colors">Rooms</a>
+                    <a href="#features" class="hover:text-blue-200 transition-colors">Features</a>
+                    <a href="#bar-pool" class="hover:text-blue-200 transition-colors">Bar & Pool</a>
+                    <a href="#contact" class="hover:text-blue-200 transition-colors">Contact</a>
+                </div>
+            </div>
+            <div class="mt-4 border-t border-blue-700 pt-4 text-center text-sm">
+                &copy; 2023 Roadside Hotels. All rights reserved. | Designed by Kondwani0099
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div id="whatsapp-float" class="fixed bottom-6 right-6 z-50">
+        <a href="https://wa.me/260961126722?text=Hello!%20I%20would%20like%20to%20inquire%20about%20room%20availability%20and%20booking%20at%20Roadside%20Hotels%20Kapiri.%20Could%20you%20please%20provide%20me%20with%20more%20information?" 
+           target="_blank" 
+           class="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-all duration-300 flex items-center justify-center group hover:shadow-xl transform hover:scale-110">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span class="ml-2 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:inline whitespace-nowrap">
+                Chat with us
+            </span>
+        </a>
+        <!-- Notification badge -->
+        <div class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center animate-pulse">
+            <i class="fas fa-comment text-xs"></i>
+        </div>
+    </div>
+
+    <!-- WhatsApp Chat Tooltip -->
+    <div id="whatsapp-tooltip" class="fixed bottom-24 right-6 z-40 bg-white rounded-lg shadow-lg p-4 max-w-xs hidden">
+        <div class="flex items-start">
+            <div class="bg-green-500 rounded-full p-2 mr-3">
+                <i class="fab fa-whatsapp text-white text-sm"></i>
+            </div>
+            <div>
+                <p class="text-sm font-semibold text-gray-900">Need Help?</p>
+                <p class="text-xs text-gray-600 mt-1">Chat with us on WhatsApp for instant booking assistance!</p>
+            </div>
+            <button onclick="hideTooltip()" class="ml-2 text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-xs"></i>
+            </button>
+        </div>
+        <div class="absolute bottom-0 right-4 transform translate-y-1">
+            <div class="w-3 h-3 bg-white transform rotate-45 border-r border-b border-gray-200"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Gallery modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            
+            // Get the clicked image
+            const clickedElement = event.target.closest('.group');
+            const img = clickedElement.querySelector('img');
+            
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            modal.classList.remove('hidden');
+            
+            // Prevent body scroll
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('hidden');
+            
+            // Restore body scroll
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // WhatsApp tooltip functionality
+        function showTooltip() {
+            const tooltip = document.getElementById('whatsapp-tooltip');
+            tooltip.classList.remove('hidden');
+        }
+
+        function hideTooltip() {
+            const tooltip = document.getElementById('whatsapp-tooltip');
+            tooltip.classList.add('hidden');
+        }
+
+        // Show WhatsApp tooltip after 3 seconds
+        setTimeout(() => {
+            showTooltip();
+            // Auto-hide after 5 seconds
+            setTimeout(hideTooltip, 5000);
+        }, 3000);
+
+        // Show tooltip on hover (desktop)
+        const whatsappButton = document.getElementById('whatsapp-float');
+        whatsappButton.addEventListener('mouseenter', showTooltip);
+        whatsappButton.addEventListener('mouseleave', () => {
+            setTimeout(hideTooltip, 1000);
+        });
+    </script>
+</body>
+</html>
