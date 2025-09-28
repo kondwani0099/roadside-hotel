@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roadside Hotels Kapiri - Comfort Along Your Journey</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="./images/icons/logo (1).jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/icons/logo (2).png">
+    <link rel="manifest" href="./images/icons/site.webmanifest">
+    <meta name="theme-color" content="#1e40af">
+    <meta name="description" content="Comfortable accommodation on Kapiri Ndola Road, Zambia. Offering Standard rooms, Deluxe rooms, and Family suites with swimming pool, bar and restaurant.">
+    <meta name="keywords" content="Roadside Hotels, Kapiri Hotels, Kapiri Accommodation, Hotels in Kapiri Ndola Road, Zambia Hotels, Standard Rooms, Deluxe Rooms, Family Suites, Hotel with Swimming Pool, Hotel Bar, Hotel Restaurant, Comfortable Stay, Affordable Hotels, Kapiri Lodging">
+    <meta name="author" content="Roadside Hotels Kapiri">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -18,6 +25,106 @@
                 }
             }
         }
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Hotel",
+        "name": "Roadside Hotels Kapiri",
+        "description": "Comfortable accommodation on Kapiri Ndola Road, Zambia. Offering Standard rooms, Deluxe rooms, and Family suites with swimming pool, bar and restaurant.",
+        "url": "https://roadsidehotels.net",
+        "telephone": "+260961126722",
+        "email": "info@roadsidehotels.net",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Kapiri Ndola Road",
+            "addressLocality": "Kapiri",
+            "addressCountry": "Zambia",
+            "addressRegion": "Central Province"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "-13.9488642",
+            "longitude": "28.6622559"
+        },
+        "amenityFeature": [
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Free WiFi",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Air Conditioning",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Swimming Pool",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Restaurant",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Bar",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "24/7 Reception",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Parking",
+                "value": true
+            }
+        ],
+        "priceRange": "ZMW 1000 - ZMW 2500",
+        "checkInTime": "14:00",
+        "checkOutTime": "11:00",
+        "starRating": {
+            "@type": "Rating",
+            "ratingValue": "3"
+        },
+        "hasMap": "https://maps.app.goo.gl/yw16gaTP5PXPNaQC6?g_st=ac",
+        "sameAs": [
+            "https://www.facebook.com/roadsidehotelskapiri",
+            "https://wa.me/260961126722"
+        ],
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Standard Room",
+                "description": "Comfortable room with modern amenities",
+                "price": "1000",
+                "priceCurrency": "ZMW",
+                "availability": "InStock"
+            },
+            {
+                "@type": "Offer",
+                "name": "Deluxe Room",
+                "description": "Enhanced comfort with premium amenities",
+                "price": "1500",
+                "priceCurrency": "ZMW",
+                "availability": "InStock"
+            },
+            {
+                "@type": "Offer",
+                "name": "Family Suite",
+                "description": "Spacious suite ideal for families",
+                "price": "2500",
+                "priceCurrency": "ZMW",
+                "availability": "InStock"
+            }
+        ]
+    }
     </script>
        
     <!-- Custom Navigation Styles -->
@@ -256,7 +363,7 @@
                 <!-- Standard Room -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
                     <div class="relative h-48 overflow-hidden">
-                        <img src="images/rooms (2).jpg" alt="Standard Room" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <img src="images/rooms/standard (3).jpg" alt="Standard Room" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="hidden h-full bg-gradient-to-r from-blue-400 to-blue-600 items-center justify-center">
                             <i class="fas fa-bed text-white text-6xl"></i>
                         </div>
@@ -282,7 +389,7 @@
                                 Air Conditioning
                             </li>
                         </ul>
-                        <button class="w-full bg-brand-blue text-white py-2 px-4 rounded-lg hover:bg-brand-dark-blue transition-colors">
+                        <button onclick="window.location.href='rooms.html'" class="w-full bg-brand-blue text-white py-2 px-4 rounded-lg hover:bg-brand-dark-blue transition-colors">
                             Book Now
                         </button>
                     </div>
@@ -324,7 +431,7 @@
                                 Complimentary Breakfast
                             </li>
                         </ul>
-                        <button class="w-full bg-brand-blue text-white py-2 px-4 rounded-lg hover:bg-brand-dark-blue transition-colors">
+                        <button onclick="window.location.href='rooms.html'" class="w-full bg-brand-blue text-white py-2 px-4 rounded-lg hover:bg-brand-dark-blue transition-colors">
                             Book Now
                         </button>
                     </div>
@@ -333,14 +440,14 @@
                 <!-- Family Suite -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow">
                     <div class="relative h-48 overflow-hidden">
-                        <img src="images/rooms (3).jpg" alt="Family Suite" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <img src="images/rooms (2).jpg" alt="Family Suite" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="hidden h-full bg-gradient-to-r from-blue-600 to-blue-800 items-center justify-center">
                             <i class="fas fa-home text-white text-6xl"></i>
                         </div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-gray-900 mb-2">Family Suite</h3>
-                        <div class="text-3xl font-bold text-brand-blue mb-4">ZMW 2500<span class="text-lg text-gray-600">/night</span></div>
+                        <div class="text-3xl font-bold text-brand-blue mb-4">ZMW 3000<span class="text-lg text-gray-600">/night</span></div>
                         <ul class="space-y-2 mb-6">
                             <li class="flex items-center text-gray-700">
                                 <i class="fas fa-check text-green-500 mr-2"></i>
@@ -363,9 +470,70 @@
                                 Sleeps up to 6 guests
                             </li>
                         </ul>
-                        <button class="w-full bg-brand-blue text-white py-2 px-4 rounded-lg hover:bg-brand-dark-blue transition-colors">
+                        <button onclick="window.location.href='rooms.html'" class="w-full bg-brand-blue text-white py-2 px-4 rounded-lg hover:bg-brand-dark-blue transition-colors">
                             Book Now
                         </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Executive Plus Suite - Premium Section -->
+            <div class="mt-16 relative">
+                <!-- Premium Background -->
+                <div class="bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-300 to-blue-300 rounded-full transform translate-x-1/2 -translate-y-1/2 opacity-30"></div>
+                    
+                    <div class="text-center mb-8 relative z-10">
+                        <span class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full text-sm font-semibold mb-4">
+                            <i class="fas fa-crown mr-2"></i>
+                            Premium Luxury
+                        </span>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Executive Plus Suite</h3>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Experience ultimate luxury with our most exclusive suite featuring a private jacuzzi</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-purple-200 hover:shadow-2xl transition-all duration-300 max-w-md mx-auto">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="images/rooms/execultive_plus (1).jpg" alt="Executive Plus Suite" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden h-full bg-gradient-to-r from-purple-600 to-blue-600 items-center justify-center">
+                                <i class="fas fa-hot-tub text-white text-6xl"></i>
+                            </div>
+                            <!-- Premium Badge -->
+                            <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                <i class="fas fa-hot-tub mr-1"></i>
+                                Jacuzzi
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4 text-center">
+                                ZMW 1200<span class="text-lg text-gray-600">/night</span>
+                            </div>
+                            <ul class="space-y-2 mb-6 text-sm">
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    Private Jacuzzi & Spa
+                                </li>
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    King Size Luxury Bed
+                                </li>
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    Butler & Room Service
+                                </li>
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    Welcome Champagne
+                                </li>
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    Airport Transfer
+                                </li>
+                            </ul>
+                            <button onclick="window.location.href='rooms.html'" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-4 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-semibold">
+                                Book Executive Plus
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

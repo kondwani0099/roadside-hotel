@@ -1,0 +1,20 @@
+{
+    "name": "Roadside Hotels Kapiri",
+    "short_name": "Roadside Hotels",
+    "icons": [
+        {
+            "src": "logo (1).png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "logo (2).png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#1e40af",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "description": "Comfortable accommodation on Kapiri Ndola Road, Zambia"
+}
