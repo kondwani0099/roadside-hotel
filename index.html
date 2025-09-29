@@ -1114,93 +1114,187 @@
 
     <!-- Scripts -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Mobile menu toggle - COMPLETE FIX
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileCloseButton = document.getElementById('mobile-close-button');
+            const hamburger = mobileMenuButton ? mobileMenuButton.querySelector('.hamburger') : null;
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+            // Check if all elements exist
+            if (!mobileMenuButton || !mobileMenu || !mobileMenuOverlay || !mobileCloseButton) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+            // Function to open mobile menu
+            function openMobileMenu() {
+                console.log('Opening mobile menu'); // Debug log
+                mobileMenu.style.transform = 'translateX(0)';
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('mobile-menu-open');
+                mobileMenuOverlay.classList.remove('hidden');
+                mobileMenuOverlay.classList.add('mobile-menu-overlay-open');
+                mobileMenuOverlay.style.display = 'block';
+                mobileMenuOverlay.style.opacity = '1';
                 
-                // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+                if (hamburger) {
+                    hamburger.classList.add('open');
+                }
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Function to close mobile menu
+            function closeMobileMenu() {
+                console.log('Closing mobile menu'); // Debug log
+                mobileMenu.style.transform = 'translateX(100%)';
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenu.classList.remove('mobile-menu-open');
+                mobileMenuOverlay.classList.add('hidden');
+                mobileMenuOverlay.classList.remove('mobile-menu-overlay-open');
+                mobileMenuOverlay.style.display = 'none';
+                mobileMenuOverlay.style.opacity = '0';
+                
+                if (hamburger) {
+                    hamburger.classList.remove('open');
+                }
+                document.body.style.overflow = '';
+            }
+
+            // Mobile menu button click event
+            mobileMenuButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Menu button clicked'); // Debug log
+                
+                if (mobileMenu.classList.contains('translate-x-full')) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close button click event
+            mobileCloseButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeMobileMenu();
+            });
+
+            // Overlay click event
+            mobileMenuOverlay.addEventListener('click', function(e) {
+                if (e.target === mobileMenuOverlay) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Mobile navigation links click events
+            document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    const href = link.getAttribute('href');
+                    closeMobileMenu();
+                    
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            setTimeout(function() {
+                                target.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }, 300);
+                        }
+                    }
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && 
+                    !mobileMenuButton.contains(e.target) && 
+                    !mobileMenu.classList.contains('translate-x-full')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close menu with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !mobileMenu.classList.contains('translate-x-full')) {
+                    closeMobileMenu();
+                }
             });
         });
 
-        // Gallery modal functions
-        function openModal(modalId) {
+        // Gallery Modal Functions
+        function openModal(modalType) {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             
-            // Get the clicked image
-            const clickedElement = event.target.closest('.group');
-            const img = clickedElement.querySelector('img');
-            
-            modalImage.src = img.src;
-            modalImage.alt = img.alt;
-            modal.classList.remove('hidden');
-            
-            // Prevent body scroll
-            document.body.classList.add('overflow-hidden');
+            const imageMap = {
+                'modal1': 'images/rooms (1).jpg',
+                'modal2': 'images/rooms (3).jpg',
+                'modal3': 'images/gallery (1).jpg',
+                'modal4': 'images/gallery (2).jpg',
+                'modal5': 'images/gallery (4).jpg',
+                'modal6': 'images/gallery (5).jpg',
+                'poolModal': 'images/pool-area (1).jpg',
+                'barModal': 'images/bar (2).jpg',
+                'poolGallery1': 'images/pool-area (3).jpg',
+                'poolGallery2': 'images/bar-area (1).jpg',
+                'poolGallery3': 'images/bar-area (3).jpg',
+                'poolGallery4': 'images/pool-area (2).jpg'
+            };
+
+            if (imageMap[modalType]) {
+                modalImage.src = imageMap[modalType];
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function closeModal() {
             const modal = document.getElementById('imageModal');
             modal.classList.add('hidden');
-            
-            // Restore body scroll
-            document.body.classList.remove('overflow-hidden');
+            document.body.style.overflow = '';
         }
 
-        // Close modal when clicking outside the image
-        document.getElementById('imageModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
+        // WhatsApp Tooltip
+        let tooltipShown = false;
+        
+        setTimeout(function() {
+            if (!tooltipShown) {
+                document.getElementById('whatsapp-tooltip').classList.remove('hidden');
+                tooltipShown = true;
+                
+                setTimeout(function() {
+                    document.getElementById('whatsapp-tooltip').classList.add('hidden');
+                }, 5000);
             }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // WhatsApp tooltip functionality
-        function showTooltip() {
-            const tooltip = document.getElementById('whatsapp-tooltip');
-            tooltip.classList.remove('hidden');
-        }
-
-        function hideTooltip() {
-            const tooltip = document.getElementById('whatsapp-tooltip');
-            tooltip.classList.add('hidden');
-        }
-
-        // Show WhatsApp tooltip after 3 seconds
-        setTimeout(() => {
-            showTooltip();
-            // Auto-hide after 5 seconds
-            setTimeout(hideTooltip, 5000);
         }, 3000);
 
-        // Show tooltip on hover (desktop)
-        const whatsappButton = document.getElementById('whatsapp-float');
-        whatsappButton.addEventListener('mouseenter', showTooltip);
-        whatsappButton.addEventListener('mouseleave', () => {
-            setTimeout(hideTooltip, 1000);
+        function hideTooltip() {
+            document.getElementById('whatsapp-tooltip').classList.add('hidden');
+        }
+
+        // Smooth scrolling for all navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#') && href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>
