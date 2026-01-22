@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Menu - Roadside Hotels Kapiri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="./images/icons/logo (1).jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/icons/logo (2).png">
+    <link rel="manifest" href="./images/icons/site.webmanifest">
+    <meta name="theme-color" content="#1e40af">
+    <meta name="description" content="Celebrate love with our special Valentine's Day Menu at Roadside Hotels Kapiri. Delicious starters, main meals, and desserts prepared for you and your loved one.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#1e40af',
+                        'brand-light-blue': '#3b82f6',
+                        'brand-dark-blue': '#1e3a8a',
+                        'valentines-red': '#e11d48',
+                        'valentines-pink': '#fb7185',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .nav-link:hover .nav-underline { width: 100%; }
+        .nav-link.active .nav-underline { width: 100%; }
+        .hamburger { width: 24px; height: 18px; position: relative; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+        .hamburger-line { height: 2px; width: 100%; border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
+        .hamburger.open .hamburger-line:nth-child(1) { transform: rotate(45deg) translateY(8px); }
+        .hamburger.open .hamburger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open .hamburger-line:nth-child(3) { transform: rotate(-45deg) translateY(-8px); }
+        .mobile-menu-open { transform: translateX(0) !important; }
+        .mobile-menu-overlay-open { opacity: 1 !important; visibility: visible !important; }
+        html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+    </style>
+</head>
+<body class="bg-rose-50">
+    <!-- Navigation -->
+    <nav class="bg-brand-blue shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3 shadow-md">
+                                <img src="images/icons/logo (1).jpg" alt="Roadside Hotels Logo" class="w-8 h-8 rounded-full object-cover">
+                            </div>
+                            <h1 class="text-white text-xl font-bold">Roadside Hotels</h1>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html#home" class="nav-link text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-all duration-300 relative">
+                            Home
+                            <span class="nav-underline absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300"></span>
+                        </a>
+                        <a href="rooms.html" class="nav-link text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-all duration-300 relative">
+                            Rooms
+                            <span class="nav-underline absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300"></span>
+                        </a>
+                        <a href="valentines-menu.html" class="nav-link text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-all duration-300 relative active">
+                            Valentine's Menu
+                            <span class="nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transition-all duration-300"></span>
+                        </a>
+                        <a href="index.html#contact" class="nav-link text-white hover:text-blue-200 px-3 py-2 text-sm font-medium transition-all duration-300 relative">
+                            Contact
+                            <span class="nav-underline absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300"></span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-white hover:text-blue-200 p-2 rounded-md transition-colors duration-300">
+                        <div class="hamburger">
+                            <span class="hamburger-line bg-white"></span>
+                            <span class="hamburger-line bg-white"></span>
+                            <span class="hamburger-line bg-white"></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+        
+        <!-- Mobile Menu Slider -->
+        <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-brand-blue z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-4 border-b border-blue-700">
+                    <span class="text-white font-bold">Menu</span>
+                    <button id="mobile-close-button" class="text-white hover:text-blue-200">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col p-4 space-y-4">
+                    <a href="index.html#home" class="mobile-nav-link text-white hover:bg-blue-800 px-3 py-2 rounded-md transition-colors">Home</a>
+                    <a href="rooms.html" class="mobile-nav-link text-white hover:bg-blue-800 px-3 py-2 rounded-md transition-colors">Rooms</a>
+                    <a href="valentines-menu.html" class="mobile-nav-link text-white bg-blue-800 px-3 py-2 rounded-md transition-colors">Valentine's Menu</a>
+                    <a href="index.html#contact" class="mobile-nav-link text-white hover:bg-blue-800 px-3 py-2 rounded-md transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-24 pb-12 bg-cover bg-center relative" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/gallery (2).jpg');">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16">
+            <h2 class="text-pink-300 text-lg md:text-xl font-semibold mb-2 uppercase tracking-widest">Celebrate Love</h2>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">VALENTINE’S MENU</h1>
+            <div class="w-24 h-1 bg-pink-500 mx-auto rounded-full"></div>
+        </div>
+    </header>
+
+    <!-- Menu Section -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10 pb-20">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-t-8 border-valentines-red">
+            
+            <!-- STARTER -->
+            <section class="mb-12">
+                <h3 class="flex items-center text-2xl font-bold text-valentines-red mb-8 border-b border-rose-100 pb-2">
+                    <i class="fas fa-heart text-pink-500 mr-3"></i>
+                    STARTER
+                </h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">CREAMY STUFFED PEPPERS</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K100</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">SPICED DRUM WINGLETS</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K100</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">GREEK SALADS</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K100</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MAIN MEALS -->
+            <section class="mb-12">
+                <h3 class="flex items-center text-2xl font-bold text-valentines-red mb-8 border-b border-rose-100 pb-2">
+                    <i class="fas fa-heart text-pink-500 mr-3"></i>
+                    MAIN MEALS
+                </h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-start group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">SPARE RIBS IN FLAVOURED BBQ SAUCE</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K250</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">GRILLED ½ CHICKEN SERVED ON BED OF GARDENS</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K400</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">SPICED SWEET AND SOUR ROASTED PORK LOINS</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K250</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">PAIRED QUAILS ROASTED IN SPICED SAUCE TILAPIA FISH</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K200</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">VEGETARIAN CREAMY STUFFED BUTTERNUT</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K150</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center group pt-4">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-bold text-pink-600 group-hover:text-valentines-red transition-colors">COUPLES PLATTER + 1 GLASS OF ALCOHOLIC COCKTAIL</h4>
+                            <p class="text-sm text-gray-500 italic mt-1">Special Valentine's Special</p>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-extrabold text-white bg-pink-600 px-4 py-2 rounded-full shadow-md">K600</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DESSERTS -->
+            <section>
+                <h3 class="flex items-center text-2xl font-bold text-valentines-red mb-8 border-b border-rose-100 pb-2">
+                    <i class="fas fa-heart text-pink-500 mr-3"></i>
+                    DESSERTS
+                </h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">ASSORTED FLAVOURS ICE CREAM</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K100</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">CREAMED PAIRED CUP CAKES</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K100</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center group">
+                        <div class="flex-1">
+                            <h4 class="text-lg font-semibold text-gray-800 group-hover:text-valentines-red transition-colors">FRUIT SKEWER ON YOGHURT BOWL</h4>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="text-lg font-bold text-gray-900 bg-rose-50 px-3 py-1 rounded">K100</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="mt-16 text-center">
+                <a href="https://wa.me/260961126722?text=I'd like to book a table for Valentine's Dinner" target="_blank" class="inline-flex items-center bg-valentines-red hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                    BOOK YOUR TABLE NOW
+                </a>
+                <p class="mt-4 text-gray-600 italic">Advanced booking recommended for couples</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-blue text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 flex items-center">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-3 shadow-md">
+                        <img src="images/icons/logo (1).jpg" alt="Roadside Hotels Logo" class="w-10 h-10 rounded-full object-cover">
+                    </div>
+                    <h1 class="text-3xl font-bold">Roadside Hotels</h1>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html#home" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="rooms.html" class="hover:text-blue-200 transition-colors">Rooms</a>
+                    <a href="valentines-menu.html" class="hover:text-blue-200 transition-colors">Menu</a>
+                    <a href="index.html#contact" class="hover:text-blue-200 transition-colors">Contact</a>
+                </div>
+            </div>
+            <div class="mt-4 border-t border-blue-700 pt-4 text-center text-sm">
+                &copy; 2023 Roadside Hotels. All rights reserved. | Designed by Kondwani0099
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileCloseButton = document.getElementById('mobile-close-button');
+            const hamburger = mobileMenuButton ? mobileMenuButton.querySelector('.hamburger') : null;
+
+            function openMobileMenu() {
+                mobileMenu.style.transform = 'translateX(0)';
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('mobile-menu-open');
+                mobileMenuOverlay.classList.remove('hidden');
+                mobileMenuOverlay.classList.add('mobile-menu-overlay-open');
+                if (hamburger) hamburger.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.style.transform = 'translateX(100%)';
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenu.classList.remove('mobile-menu-open');
+                mobileMenuOverlay.classList.add('hidden');
+                mobileMenuOverlay.classList.remove('mobile-menu-overlay-open');
+                if (hamburger) hamburger.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMobileMenu);
+            if (mobileCloseButton) mobileCloseButton.addEventListener('click', closeMobileMenu);
+            if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        });
+    </script>
+</body>
+</html>
